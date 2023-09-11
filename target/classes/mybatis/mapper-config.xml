@@ -5,8 +5,8 @@
 <configuration>
 
 	<typeAliases>
+		<typeAlias alias="UserInfo" type="com.mycompany.yogitour.dto.UserInfo"/>
 		<typeAlias alias="Board" type="com.mycompany.yogitour.dto.Board"/>
-		<typeAlias alias="Member" type="com.mycompany.yogitour.dto.Member"/>
 		<typeAlias alias="Pager" type="com.mycompany.yogitour.dto.Pager"/>
 	</typeAliases>
 

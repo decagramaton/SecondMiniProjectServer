@@ -11,15 +11,15 @@ import org.springframework.web.client.RestOperationsExtensionsKt;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.mycompany.yogitour.dto.Member;
-import com.mycompany.yogitour.service.MemberService;
+import com.mycompany.yogitour.dto.UserInfo;
+import com.mycompany.yogitour.service.UserInfoService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor{
 	@Autowired
-	private MemberService memberService;
+	private UserInfoService userInfoService;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -33,12 +33,12 @@ public class LoginCheckInterceptor implements HandlerInterceptor{
 			String userPassword = request.getParameter("userPassword");
 			
 			if(userId != null && userPassword != null) {
-				Member dbMember = memberService.getMember(userId);
+				UserInfo dbMember = userInfoService.getUserInfo(userId);
 				
 				if(dbMember == null) {
 					checkResult = false;
 				} else {
-					if(!dbMember.getMpassword().endsWith(userPassword)) {
+					if(!dbMember.getUserPassword().endsWith(userPassword)) {
 						checkResult = false;
 					}
 				}
