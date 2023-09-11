@@ -1,0 +1,115 @@
+package com.mycompany.yogitour.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.mycompany.yogitour.dto.Product;
+import com.mycompany.yogitour.interceptor.Login;
+import com.mycompany.yogitour.service.ProductService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RestController
+@RequestMapping("/product")
+public class ProductController {
+
+	@Autowired
+	private ProductService productService;	
+	
+	/**
+	 * 전체 상품 목록을 조회하는 메소드
+	 * @author 고재승, 박재홍
+	 * @return 상품 목록
+	 */
+	@GetMapping(value="/getProductList", produces="application/json; charset=UTF-8")
+	public List<Product> getProductList(){
+		return productService.getList();
+	}
+	
+	
+	/**
+	 * 카테고리 조건으로 전체 상품을 조회하는 메소드
+	 * @author 고재승
+	 * @return 상품 목록
+	 */
+	@GetMapping(value="getProductListByCategory", produces="application/json; charset=UTF-8")
+	public List<Product> getProductListByCategory(String category) {
+		return productService.getListByCategory(category);
+	}
+	
+	
+	/**
+	 * 단일 상품의 모든 정보를 조회하는 메소드
+	 * @author 고재승
+	 * @param bno
+	 * @return
+	 */
+	@GetMapping(value="/getBoard", produces="application/json; charset=UTF-8")
+	public Product getBoard(int productNo){
+		return productService.getProduct(productNo);
+	}
+	
+	
+	/**
+	 * 이미지 파일 다운로드 메소드
+	 * @author 교수님
+	 * @param productNo
+	 * @return Image Byte[]
+	 */
+	@GetMapping(value="/fileDownload", produces="image/jpeg")
+	public byte[] fileDownload(int productNo){
+		Product product = productService.getBoardOnlyAttachData(productNo);
+		return product.getProductMediaData();
+	}
+	
+	/**
+	 * 게시글 작성 메소드
+	 * @param board
+	 * @return
+	 */
+	@Login
+	@PostMapping(value="/writeBoard", produces="application/json; charset=UTF-8")
+	public String writeBoard(Product product) {
+			
+		JSONObject jsonObject = new JSONObject();
+		
+		try {
+			//MultipartFile 여부 확인
+			MultipartFile mf = product.getBattach();
+			
+			// MultipartFile 없으면 File의 데이터 타입과, Byte를 DTO에 추가
+			if(!mf.isEmpty()) {
+				product.setProductMediaType(mf.getContentType());
+				product.setProductMediaData(mf.getBytes());
+			}
+			
+			// DB에 작성글 추가 요청
+			productService.write(product);
+			
+			// 추가 성공 시, 요청 결과와 요청한 작성글 번호 반환
+			jsonObject.put("result", "success");
+			jsonObject.put("productNo", product.getProductNo());
+			
+		} catch (Exception e) {
+			// 추가 실패 시, 요청 결과와 실패 사유 반환
+			jsonObject.put("result", "fail");
+			jsonObject.put("message", e.getMessage());
+		}
+		
+		return jsonObject.toString();
+
+	}
+	
+}

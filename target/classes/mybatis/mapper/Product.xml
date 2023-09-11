@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.yogitour.dao.BoardDao">
+	<insert id="insertProduct" parameterType="Product">
+
+		<selectKey keyProperty="productNo" resultType="int" order="BEFORE">
+			select PRODUCT_NO_SEQ.nextval from dual
+		</selectKey>
+		
+		INSERT INTO PRODUCT (bno, btitle, bcontent, mid, bdate, bhitcount, battachoname, battachtype, battachsname, battachdata)
+		values(
+			#{bno}, #{btitle}, #{bcontent}, #{mid}, sysdate, 0, 
+			#{battachoname, jdbcType=VARCHAR},
+			#{battachtype, jdbcType=VARCHAR},
+			#{battachsname, jdbcType=VARCHAR},
+			#{battachdata, jdbcType=BLOB}
+		)
+	</insert>
+	
+	<insert id="insertMedia" parameterType="Product">
+
+		<selectKey keyProperty="productNo" resultType="int" order="BEFORE">
+			select PRODUCT_NO_SEQ.nextval from dual
+		</selectKey>
+		
+		INSERT INTO PRODUCT (bno, btitle, bcontent, mid, bdate, bhitcount, battachoname, battachtype, battachsname, battachdata)
+		values(
+			#{bno}, #{btitle}, #{bcontent}, #{mid}, sysdate, 0, 
+			#{battachoname, jdbcType=VARCHAR},
+			#{battachtype, jdbcType=VARCHAR},
+			#{battachsname, jdbcType=VARCHAR},
+			#{battachdata, jdbcType=BLOB}
+		)
+	</insert>
+	
+	<!-- DB 조회 결과, 한 행당 DTO 객체 1개를 만든다. -->
+	<select id="selectAll" resultType="Product">
+		SELECT p.PRODUCT_NO as productNo,
+			p.PRODUCT_TITLE as productTitle,
+			p.PRODUCT_ADULT_PRICE as productAdultPrice,
+			p.PRODUCT_CHILD_PRICE as productChildPrice,
+			p.TOUR_START_DATE as tourStartDate,
+			p.TOUR_END_DATE as tourEndDate,
+			p.PRODUCT_VEHICLE as productVehicle,
+			p.PRODUCT_VISIT_PLACE as productVisitPlace,
+			p.PRODUCT_RESERVATION_NUMBER as productReservationNumber,
+			p.PRODUCT_CONTENT as productContent,
+			p.PRODUCT_CATEGORY as productCategory
+			m.MEDIA_DATA as productMediaData
+			m.MEDIA_TYPE as productMediaType
+		FROM PRODUCT p, MEDIA m
+		WHERE p.PRODUCT_NO = m.PRODUCT_NO
+		ORDER BY PRODUCT_NO DESC
+	</select>
+	
+	<select id="selectByProductNo" parameterType="int" resultType="Product">
+		SELECT p.PRODUCT_NO as productNo,
+			p.PRODUCT_TITLE as productTitle,
+			p.PRODUCT_ADULT_PRICE as productAdultPrice,
+			p.PRODUCT_CHILD_PRICE as productChildPrice,
+			p.TOUR_START_DATE as tourStartDate,
+			p.TOUR_END_DATE as tourEndDate,
+			p.PRODUCT_VEHICLE as productVehicle,
+			p.PRODUCT_VISIT_PLACE as productVisitPlace,
+			p.PRODUCT_RESERVATION_NUMBER as productReservationNumber,
+			p.PRODUCT_CONTENT as productContent,
+			p.PRODUCT_CATEGORY as productCategory
+			m.MEDIA_DATA as productMediaData
+			m.MEDIA_TYPE as productMediaType
+		FROM PRODUCT p, MEDIA m
+		WHERE p.PRODUCT_NO = m.PRODUCT_NO
+			p.PRODUCT_NO = #{productNo}
+	</select>
+
+
+	<delete id="deleteByProductNo" parameterType="int">
+		DELETE FROM PRODUCT
+		WHERE PRODUCT_NO=#{productNo}
+	</delete>
+	
+	<select id="selectProductListByCategory" parameterType="String" resultType="Product">
+		SELECT p.PRODUCT_NO as productNo,
+			p.PRODUCT_TITLE as productTitle,
+			p.PRODUCT_ADULT_PRICE as productAdultPrice,
+			p.PRODUCT_CHILD_PRICE as productChildPrice,
+			p.TOUR_START_DATE as tourStartDate,
+			p.TOUR_END_DATE as tourEndDate,
+			p.PRODUCT_VEHICLE as productVehicle,
+			p.PRODUCT_VISIT_PLACE as productVisitPlace,
+			p.PRODUCT_RESERVATION_NUMBER as productReservationNumber,
+			p.PRODUCT_CONTENT as productContent,
+			p.PRODUCT_CATEGORY as productCategory
+			m.MEDIA_DATA as productMediaData
+			m.MEDIA_TYPE as productMediaType
+		FROM PRODUCT p, MEDIA m
+		WHERE p.PRODUCT_NO = m.PRODUCT_NO
+			p.PRODUCT_CATEGORY = #{productCategory}
+	
+	</select>
+</mapper>
