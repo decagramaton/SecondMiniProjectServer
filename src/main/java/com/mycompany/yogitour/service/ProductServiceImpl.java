@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.yogitour.dao.ProductDao;
+import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.Product;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,13 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public void write(Product product) {
+		Media media = new Media();
+		media.setProductNo(product.getProductNo());
+		media.setMediaData(product.getProductMediaData());
+		media.setMediaType(product.getProductMediaType());
+		
 		productDao.insertProduct(product);
-		productDao.insertMedia(product);
+		productDao.insertMedia(media);
 	}
 	
 	@Override

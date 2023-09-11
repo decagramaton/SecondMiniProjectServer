@@ -24,7 +24,6 @@ public class Product {
 	private String productCategory;
 	
 	private MultipartFile battach;
-	private String productMediaOriginalName;
 	private byte[] productMediaData;
 	private String productMediaType;
 }

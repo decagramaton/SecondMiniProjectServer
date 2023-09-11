@@ -75,13 +75,13 @@ public class ProductController {
 	}
 	
 	/**
-	 * 게시글 작성 메소드
+	 * 상품 게시글 작성 메소드
 	 * @param board
 	 * @return
 	 */
 	@Login
-	@PostMapping(value="/writeBoard", produces="application/json; charset=UTF-8")
-	public String writeBoard(Product product) {
+	@PostMapping(value="/writeProduct", produces="application/json; charset=UTF-8")
+	public String writeProduct(Product product) {
 			
 		JSONObject jsonObject = new JSONObject();
 		
