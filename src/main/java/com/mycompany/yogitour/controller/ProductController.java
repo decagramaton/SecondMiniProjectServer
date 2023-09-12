@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mycompany.yogitour.dto.Board;
+import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.Product;
 import com.mycompany.yogitour.interceptor.Login;
 import com.mycompany.yogitour.service.ProductService;
@@ -34,7 +36,7 @@ public class ProductController {
 	 * @return 상품 목록
 	 */
 	@GetMapping(value="/getProductList", produces="application/json; charset=UTF-8")
-	public List<Product> getProductList(){
+	public List<Board> getProductList(){
 		return productService.getList();
 	}
 	
@@ -56,7 +58,7 @@ public class ProductController {
 	 * @param bno
 	 * @return
 	 */
-	@GetMapping(value="/getBoard", produces="application/json; charset=UTF-8")
+	@GetMapping(value="/getProduct", produces="application/json; charset=UTF-8")
 	public Product getBoard(int productNo){
 		return productService.getProduct(productNo);
 	}
@@ -70,8 +72,8 @@ public class ProductController {
 	 */
 	@GetMapping(value="/fileDownload", produces="image/jpeg")
 	public byte[] fileDownload(int productNo){
-		Product product = productService.getBoardOnlyAttachData(productNo);
-		return product.getProductMediaData();
+		Media media = productService.getProductOnlyAttachData(productNo);
+		return media.getMediaData();
 	}
 	
 	/**
@@ -86,14 +88,14 @@ public class ProductController {
 		JSONObject jsonObject = new JSONObject();
 		
 		try {
-			//MultipartFile 여부 확인
+			/*//MultipartFile 여부 확인
 			MultipartFile mf = product.getBattach();
 			
 			// MultipartFile 없으면 File의 데이터 타입과, Byte를 DTO에 추가
 			if(!mf.isEmpty()) {
 				product.setProductMediaType(mf.getContentType());
 				product.setProductMediaData(mf.getBytes());
-			}
+			}*/
 			
 			// DB에 작성글 추가 요청
 			productService.write(product);

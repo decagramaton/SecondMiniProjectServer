@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias alias="UserInfo" type="com.mycompany.yogitour.dto.UserInfo"/>
 		<typeAlias alias="Product" type="com.mycompany.yogitour.dto.Product"/>
+		<typeAlias alias="Review" type="com.mycompany.yogitour.dto.Review"/>		
 		<typeAlias alias="Media" type="com.mycompany.yogitour.dto.Media"/>
 	</typeAliases>
 

@@ -13,7 +13,7 @@ public interface ProductDao {
 	public int insertMedia(Media media);
 	public List<Product> selectAll();
 	public Product selectByProductNo(int ProductNo);
-	public Product selectBattachDataByProductNo(int productNo);
+	public Media selectBattachDataByProductNo(int productNo);
 	public int deleteByProductNo(int bno);
 	public List<Product> selectProductListByCategory(String category);
 }
