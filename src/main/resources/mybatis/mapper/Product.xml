@@ -71,6 +71,25 @@
 		WHERE p.PRODUCT_NO = m.PRODUCT_NO,
 			p.PRODUCT_NO = #{productNo}
 	</select>
+	
+	<select id="selectBySearchKeyword" parameterType="String" resultType="Product">
+		SELECT p.PRODUCT_NO as productNo,
+			p.PRODUCT_TITLE as productTitle,
+			p.PRODUCT_ADULT_PRICE as productAdultPrice,
+			p.PRODUCT_CHILD_PRICE as productChildPrice,
+			p.TOUR_START_DATE as tourStartDate,
+			p.TOUR_END_DATE as tourEndDate,
+			p.PRODUCT_VEHICLE as productVehicle,
+			p.PRODUCT_VISIT_PLACE as productVisitPlace,
+			p.PRODUCT_RESERVATION_NUMBER as productReservationNumber,
+			p.PRODUCT_CONTENT as productContent,
+			p.PRODUCT_CATEGORY as productCategory,
+			m.MEDIA_DATA as productMediaData,
+			m.MEDIA_TYPE as productMediaType
+		FROM PRODUCT p, MEDIA m
+		WHERE p.PRODUCT_NO = m.PRODUCT_NO
+			AND p.PRODUCT_TITLE LIKE '%' || #{searchKeyword} || '%'
+	</select>
 
 
 	<delete id="deleteByProductNo" parameterType="int">
@@ -94,7 +113,7 @@
 			m.MEDIA_TYPE as productMediaType
 		FROM PRODUCT p, MEDIA m
 		WHERE p.PRODUCT_NO = m.PRODUCT_NO
-			p.PRODUCT_CATEGORY = #{productCategory}
+			AND p.PRODUCT_CATEGORY LIKE '%' || #{category} || '%'
 	
 	</select>
 	

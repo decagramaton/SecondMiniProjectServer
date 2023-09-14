@@ -47,8 +47,18 @@ public class ProductController {
 	 * @return 상품 목록
 	 */
 	@GetMapping(value="getProductListByCategory", produces="application/json; charset=UTF-8")
-	public List<Product> getProductListByCategory(String category) {
+	public List<Board> getProductListByCategory(String category) {
 		return productService.getListByCategory(category);
+	}
+	
+	/**
+	 * 검색 키워드 조건으로 상품 목록을 조회하는 메소드
+	 * @author 고재승
+	 * @return 게시글 목록
+	 */
+	@GetMapping(value="getProductListBySearchKeyword", produces="application/json; charset=UTF-8")
+	public List<Board> getProductListBySearchKeyword(String searchKeyword) {
+		return productService.getProductListBySearchKeyword(searchKeyword);
 	}
 	
 	

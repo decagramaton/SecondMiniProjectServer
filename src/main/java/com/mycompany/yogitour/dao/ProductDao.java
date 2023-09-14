@@ -12,6 +12,7 @@ public interface ProductDao {
 	public int insertProduct(Product product);
 	public int insertMedia(Media media);
 	public List<Product> selectAll();
+	public List<Product> selectBySearchKeyword(String searchKeyword);
 	public Product selectByProductNo(int ProductNo);
 	public Media selectBattachDataByProductNo(int productNo);
 	public int deleteByProductNo(int bno);

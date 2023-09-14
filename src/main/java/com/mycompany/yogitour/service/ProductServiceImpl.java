@@ -80,6 +80,43 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
+	public List<Board> getProductListBySearchKeyword(String searchKeyword) {
+		List<Board> boardList = new ArrayList<>();
+				
+		// Step1. Product 정보와 Review 정보를 가져온다.
+		List<Product> productList = productDao.selectBySearchKeyword(searchKeyword);
+		
+		// Step2. Product, Review정보를 Board DTO에 하나로 취합한다.
+		// 각 Product마다 리뷰 평균 점수와  리뷰 총 개수를 구하고 Board DTO에 취합해야한다.
+		for(Product item : productList) {
+			List<Review> reviewList = reviewDao.selectReviewListByProductNo(item.getProductNo());
+			
+			if(reviewList.isEmpty()) {
+				Review review = new Review();
+				review.setReviewRating(0);
+				reviewList.add(review);
+			}
+
+			Board board = new Board();
+			board.setProductNo(item.getProductNo());
+			board.setProductTitle(item.getProductTitle());
+			board.setProductAdultPrice(item.getProductAdultPrice());
+			board.setProductChildPrice(item.getProductChildPrice());
+			board.setProductCategory(item.getProductCategory());
+			board.setProductContent(item.getProductContent());
+			board.setProductReservationNumber(item.getProductReservationNumber());
+			board.setProductVehicle(item.getProductVehicle());
+			board.setProductVisitPlace(item.getProductVisitPlace());
+			board.setTourStartDate(item.getTourStartDate());
+			board.setTourEndDate(item.getTourEndDate());
+			board.setReviewList(reviewList);
+			boardList.add(board);
+		}
+		
+		return boardList;
+	}
+	
+	@Override
 	public Product getProduct(int productNo) {
 		Product product = productDao.selectByProductNo(productNo);
 		return product;
@@ -92,7 +129,39 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public List<Product> getListByCategory(String category) {
-		return productDao.selectProductListByCategory(category);
+	public List<Board> getListByCategory(String category) {
+		List<Board> boardList = new ArrayList<>();
+		
+		// Step1. Product 정보와 Review 정보를 가져온다.
+		List<Product> productList = productDao.selectProductListByCategory(category);
+		
+		// Step2. Product, Review정보를 Board DTO에 하나로 취합한다.
+		// 각 Product마다 리뷰 평균 점수와  리뷰 총 개수를 구하고 Board DTO에 취합해야한다.
+		for(Product item : productList) {
+			List<Review> reviewList = reviewDao.selectReviewListByProductNo(item.getProductNo());
+			
+			if(reviewList.isEmpty()) {
+				Review review = new Review();
+				review.setReviewRating(0);
+				reviewList.add(review);
+			}
+
+			Board board = new Board();
+			board.setProductNo(item.getProductNo());
+			board.setProductTitle(item.getProductTitle());
+			board.setProductAdultPrice(item.getProductAdultPrice());
+			board.setProductChildPrice(item.getProductChildPrice());
+			board.setProductCategory(item.getProductCategory());
+			board.setProductContent(item.getProductContent());
+			board.setProductReservationNumber(item.getProductReservationNumber());
+			board.setProductVehicle(item.getProductVehicle());
+			board.setProductVisitPlace(item.getProductVisitPlace());
+			board.setTourStartDate(item.getTourStartDate());
+			board.setTourEndDate(item.getTourEndDate());
+			board.setReviewList(reviewList);
+			boardList.add(board);
+		}
+		
+		return boardList;
 	}
 }
