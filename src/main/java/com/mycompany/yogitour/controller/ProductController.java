@@ -40,6 +40,7 @@ public class ProductController {
 		return productService.getList();
 	}
 	
+	//testest
 	
 	/**
 	 * 카테고리 조건으로 전체 상품을 조회하는 메소드
