@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="ImageQuery" type="com.mycompany.yogitour.dto.ImageQuery"/>
+		<typeAlias alias="UserInfo" type="com.mycompany.yogitour.dto.UserInfo"/>
+		<typeAlias alias="Product" type="com.mycompany.yogitour.dto.Product"/>
+		<typeAlias alias="Review" type="com.mycompany.yogitour.dto.Review"/>		
+		<typeAlias alias="Media" type="com.mycompany.yogitour.dto.Media"/>
+	</typeAliases>
+
+</configuration>
