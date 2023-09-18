@@ -1,6 +1,5 @@
 /target/
 .classpath
-.githnore
-.setting/
+.settings/
 .springBeans
-.project.
+.project

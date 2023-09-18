@@ -20,6 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/userInfo")
 public class UserInfoController {
 	
+	// 테스트용
+	
 	@Autowired
 	private UserInfoService userInfoService;
 	
