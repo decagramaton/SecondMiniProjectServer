@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.yogitour.dto.Product;
+import com.mycompany.yogitour.dto.ImageQuery;
 import com.mycompany.yogitour.dto.Media;
 
 @Mapper
@@ -14,7 +15,7 @@ public interface ProductDao {
 	public List<Product> selectAll();
 	public List<Product> selectBySearchKeyword(String searchKeyword);
 	public Product selectByProductNo(int ProductNo);
-	public Media selectBattachDataByProductNo(int productNo);
+	public Media selectBattachData(ImageQuery imageQuery);
 	public int deleteByProductNo(int bno);
 	public List<Product> selectProductListByCategory(String category);
 }

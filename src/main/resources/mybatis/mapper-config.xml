@@ -5,6 +5,7 @@
 <configuration>
 
 	<typeAliases>
+		<typeAlias alias="ImageQuery" type="com.mycompany.yogitour.dto.ImageQuery"/>
 		<typeAlias alias="UserInfo" type="com.mycompany.yogitour.dto.UserInfo"/>
 		<typeAlias alias="Product" type="com.mycompany.yogitour.dto.Product"/>
 		<typeAlias alias="Review" type="com.mycompany.yogitour.dto.Review"/>		

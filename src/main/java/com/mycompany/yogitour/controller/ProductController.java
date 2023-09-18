@@ -73,6 +73,16 @@ public class ProductController {
 		return productService.getProduct(productNo);
 	}
 	
+	/**
+	 * 게시글의 초기 정보를 조회하는 메소드
+	 * 
+	 * 
+	 */
+	@GetMapping(value="/getProductDetail", produces="application/json; charset=UTF-8")
+	public Product getProductDetail(int productNo) {
+		return productService.getProductDetail(productNo);
+	}
+	
 	
 	/**
 	 * 이미지 파일 다운로드 메소드
@@ -81,8 +91,8 @@ public class ProductController {
 	 * @return Image Byte[]
 	 */
 	@GetMapping(value="/fileDownload", produces="image/jpeg")
-	public byte[] fileDownload(int productNo){
-		Media media = productService.getProductOnlyAttachData(productNo);
+	public byte[] fileDownload(int productNo, String keyword){
+		Media media = productService.getProductOnlyAttachData(productNo, keyword);
 		return media.getMediaData();
 	}
 	

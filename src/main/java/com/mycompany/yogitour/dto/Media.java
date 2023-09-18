@@ -6,6 +6,7 @@ import lombok.Data;
 public class Media {
 	private int mediaNo;
 	private int productNo;
+	private String mediaName;
 	private String mediaType;
 	private byte[] mediaData;
 }

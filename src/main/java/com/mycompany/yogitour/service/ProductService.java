@@ -13,6 +13,7 @@ public interface ProductService {
 	public List<Board> getList();
 	public List<Board> getProductListBySearchKeyword(String searchKeyword);
 	public Product getProduct(int productNo);
-	public Media getProductOnlyAttachData(int productNo);	
+	public Media getProductOnlyAttachData(int productNo, String keyword);	
 	public List<Board> getListByCategory(String category);
+	public Product getProductDetail(int productNo);
 }

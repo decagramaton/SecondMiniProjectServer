@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.yogitour.dao.ProductDao;
 import com.mycompany.yogitour.dao.ReviewDao;
 import com.mycompany.yogitour.dto.Board;
+import com.mycompany.yogitour.dto.ImageQuery;
 import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.Product;
 import com.mycompany.yogitour.dto.Review;
@@ -123,9 +124,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public Media getProductOnlyAttachData(int productNo) {
-		Media media = productDao.selectBattachDataByProductNo(productNo);
-		return media;
+	public Media getProductOnlyAttachData(int productNo, String keyword) {
+		return productDao.selectBattachData(new ImageQuery(productNo, keyword));
 	}
 	
 	@Override
@@ -163,5 +163,11 @@ public class ProductServiceImpl implements ProductService{
 		}
 		
 		return boardList;
+	}
+	
+	@Override
+	public Product getProductDetail(int productNo) {
+		
+		return null;
 	}
 }
