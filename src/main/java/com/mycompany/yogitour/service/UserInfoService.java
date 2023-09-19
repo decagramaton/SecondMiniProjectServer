@@ -27,7 +27,7 @@ public interface UserInfoService {
 	 * @param userInfo
 	 * @return 로그인 ENUM 값
 	 */
-	public LoginResult login(String userId);
+	public LoginResult login(String userId, String userPassword);
 	
 	
 	/** 회원가입 유효성 검증 메소드

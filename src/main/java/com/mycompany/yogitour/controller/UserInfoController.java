@@ -35,7 +35,7 @@ public class UserInfoController {
 	public String login(String userId, String userPassword) {		
 		
 		// Step1. 로그인 성공 여부 확인
-		LoginResult loginResult = userInfoService.login(userId);
+		LoginResult loginResult = userInfoService.login(userId, userPassword);
 		JSONObject jsonObject = new JSONObject();
 		
 		// Step2. 로그인 성공 시, 유저 정보 반환

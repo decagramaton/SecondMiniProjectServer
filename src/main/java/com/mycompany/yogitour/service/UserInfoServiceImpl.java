@@ -24,10 +24,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	
 	@Override
-	public LoginResult login(String userId) {
-		UserInfo dbUserInfo = userInfoDao.selectUserInfoById(userId);
+	public LoginResult login(String userId, String userPassword) {
 		
-		if(dbUserInfo == null) {
+		int dbUserNo = userInfoDao.selectLoginUser(new UserInfo(userId, userPassword));
+		
+		if(dbUserNo == 0) {
 			log.info("실행되면 안되는데?");
 			return UserInfoService.LoginResult.FAIL_USER_ID;
 		}

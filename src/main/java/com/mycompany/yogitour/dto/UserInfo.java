@@ -17,4 +17,9 @@ public class UserInfo {
 	private String userEmail;
 	
 	/*private byte[] userProfileImage;*/
+	
+	public UserInfo(String userId, String userPassword) {
+		this.userId = userId;
+		this.userPassword = userPassword;
+	}
 }

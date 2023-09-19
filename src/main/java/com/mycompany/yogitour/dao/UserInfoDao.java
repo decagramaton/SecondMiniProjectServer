@@ -6,5 +6,6 @@ import com.mycompany.yogitour.dto.UserInfo;
 @Mapper
 public interface UserInfoDao {
 	public int insert(UserInfo userInfo);
+	public int selectLoginUser(UserInfo userInfo);
 	public UserInfo selectUserInfoById(String userId);
 }
