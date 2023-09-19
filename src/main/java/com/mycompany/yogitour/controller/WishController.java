@@ -1,24 +1,14 @@
 package com.mycompany.yogitour.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.mycompany.yogitour.dto.Board;
-import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.Product;
-import com.mycompany.yogitour.interceptor.Login;
-import com.mycompany.yogitour.service.ProductService;
+import com.mycompany.yogitour.dto.Wish;
 import com.mycompany.yogitour.service.WishService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,5 +32,10 @@ public class WishController {
 	public void clickWishBtn(int productNo, int userNo){
 		log.info("상품번호, 유저번호  " + productNo +  " : " +userNo);
 		wishService.clickWishBtn(productNo, userNo);
+	}
+	
+	@GetMapping(value="/getWishListByUserNo", produces="application/json; charset=UTF-8")
+	public List<Product> getWishListByUserNo(int userNo) {
+		return wishService.getWish(userNo);
 	}
 }
