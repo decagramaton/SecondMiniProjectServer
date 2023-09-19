@@ -9,5 +9,6 @@ import com.mycompany.yogitour.dto.Review;
 @Mapper
 public interface ReviewDao {
 	public List<Review> selectReviewListByProductNo(int productNo);
+	public List<Review> selectReviewListByUserNo(int userNo);
 	
 }
