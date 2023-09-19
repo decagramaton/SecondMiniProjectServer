@@ -32,29 +32,29 @@ public class UserInfoController {
 	 * @return userInfo DTO
 	 */
 	@RequestMapping(value="/login", produces="application/json; charset=UTF-8")
-	public String login(UserInfo userInfo) {		
+	public String login(String userId, String userPassword) {		
 		
 		// Step1. 로그인 성공 여부 확인
-		LoginResult loginResult = userInfoService.login(userInfo);
+		LoginResult loginResult = userInfoService.login(userId);
 		JSONObject jsonObject = new JSONObject();
 		
 		// Step2. 로그인 성공 시, 유저 정보 반환
 		if(loginResult == LoginResult.SUCCESS) {
-			jsonObject.put("result", "success");
-			
-			UserInfo dbUserInfo = userInfoService.getUserInfo(userInfo.getUserId());
-			jsonObject.put("userId", dbUserInfo.getUserId());
-			jsonObject.put("userPw", dbUserInfo.getUserPassword());
-		
+			jsonObject.put("result", "success");	
 		// Step3. 로그인 실패 시, 실패 사유 반환
 		} else if (loginResult == LoginResult.FAIL_USER_ID) {
 			jsonObject.put("result", "fail_user_id");
 		} else if (loginResult == LoginResult.FAIL_USER_PASSWORD) {
 			jsonObject.put("result", "fail_user_password");
 		}
-		
-		String json = jsonObject.toString();
-		return json;
+
+		return jsonObject.toString();
+	}
+	
+	
+	@GetMapping(value="/getUserInfo", produces="application/json; charset=UTF-8")
+	public UserInfo getUserInfo(String userId) {
+		return userInfoService.getUserInfo(userId);
 	}
 	
 	
@@ -73,13 +73,6 @@ public class UserInfoController {
 		}	
 		
 		return jsonObject.toString();
-	}
-	
-	
-	@GetMapping(value="/getUserInfo", produces="application/json; charset=UTF-8")
-	public UserInfo getUserInfo(UserInfo userInfo) {
-		
-		return null;
 	}
 	
 }

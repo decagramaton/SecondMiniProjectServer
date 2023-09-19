@@ -18,17 +18,14 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	
 	@Override
-	public UserInfo getUserInfo(String userID) {
-		UserInfo userInfo = userInfoDao.selectUserInfoById(userID);
-		return userInfo;
+	public UserInfo getUserInfo(String userId) {
+		return userInfoDao.selectUserInfoById(userId);
 	}
 	
 	
 	@Override
-	public LoginResult login(UserInfo userInfo) {
-		UserInfo dbUserInfo = userInfoDao.selectUserInfoById(userInfo.getUserId());
-		log.info("userInfo 자체는?"+ userInfo);
-		log.info(""+dbUserInfo);
+	public LoginResult login(String userId) {
+		UserInfo dbUserInfo = userInfoDao.selectUserInfoById(userId);
 		
 		if(dbUserInfo == null) {
 			log.info("실행되면 안되는데?");

@@ -11,7 +11,7 @@
 			USER_KO_NAME as userKoName,
 			USER_ID as userId,
 			USER_PASSWORD as userPassword,
-			USER_BIRTH as userPassword,
+			USER_BIRTH as userBirth,
 			USER_PHONE as userPhone,
 			USER_GENDER as userGender,
 			USER_EN_NAME as userEnName,

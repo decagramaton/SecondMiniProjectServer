@@ -20,17 +20,17 @@ public interface UserInfoService {
 	 * @param userID
 	 * @return UserInfo DB DTO
 	 */
-	public UserInfo getUserInfo(String userID);
+	public UserInfo getUserInfo(String userId);
 	
 	/** 로그인 유효성 검증 메소드
 	 * @author 고재승
 	 * @param userInfo
 	 * @return 로그인 ENUM 값
 	 */
-	public LoginResult login(UserInfo userInfo);
+	public LoginResult login(String userId);
 	
 	
-	/** 로그인 유효성 검증 메소드
+	/** 회원가입 유효성 검증 메소드
 	 * @author 고재승
 	 * @param userInfo
 	 * @return 회원가입 ENUM 값
