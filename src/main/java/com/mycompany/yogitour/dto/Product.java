@@ -19,12 +19,10 @@ public class Product {
 	private Date tourEndDate;
 	private String productVehicle;
 	private String productVisitPlace;
-	private String productVideoUrl;
 	private int productReservationNumber;
 	private String productContent;
 	private String productCategory;
-	
-	private float averageRating;
+	private String productVideoUrl;
 	
 	/*private MultipartFile battach;
 	private byte[] productMediaData;

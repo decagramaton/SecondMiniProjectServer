@@ -44,8 +44,6 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Board> getList() {
 		List<Board> boardList = new ArrayList<>();
-		
-		
 		// Step1. Product 정보와 Review 정보를 가져온다.
 		List<Product> productList = productDao.selectAll();
 		
@@ -78,7 +76,6 @@ public class ProductServiceImpl implements ProductService{
 			
 		}
 		// Step3. Board DTO 반환
-		log.info("db에서 바로 받아온 board (productServiceImpl) :" +boardList.size());
 		return boardList;
 	}
 	
@@ -121,9 +118,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public Board getProduct(int productNo) {
-		log.info("상품 번호" + productNo);
 		Product product = productDao.selectByProductNo(productNo);
-		log.info("상품의 정보가 여기서라면?" + product);
 		List<Review> reviewList = reviewDao.selectReviewListByProductNo(product.getProductNo());
 		Board board = new Board();
 		
@@ -131,15 +126,8 @@ public class ProductServiceImpl implements ProductService{
 			Review review = new Review();
 			review.setReviewRating(0);
 			reviewList.add(review);
-			board.setAverageRating(0);
-		}else {
-			float totalRate=0;
-			for(Review review : reviewList) {
-				totalRate += review.getReviewRating();
-			}
-			float averageRating = totalRate/reviewList.size();
-			board.setAverageRating(averageRating);
 		}
+		
 		board.setProductNo(product.getProductNo());
 		board.setProductTitle(product.getProductTitle());
 		board.setProductAdultPrice(product.getProductAdultPrice());
@@ -153,7 +141,6 @@ public class ProductServiceImpl implements ProductService{
 		board.setTourStartDate(product.getTourStartDate());
 		board.setTourEndDate(product.getTourEndDate());
 		board.setReviewList(reviewList);
-		log.info("상품 내용"+board);
 		return board;
 	}
 	

@@ -15,7 +15,6 @@
 			USER_PHONE as userPhone,
 			USER_GENDER as userGender,
 			USER_EN_NAME as userEnName,
-			USER_PROFILE_IMAGE as userProfileImage,
 			USER_EMAIL as userEmail
 		FROM USERINFO
 		WHERE USER_ID=#{userId}

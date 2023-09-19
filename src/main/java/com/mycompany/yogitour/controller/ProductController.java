@@ -1,10 +1,6 @@
 package com.mycompany.yogitour.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.yogitour.dto.Board;
 import com.mycompany.yogitour.dto.Media;
@@ -37,8 +32,8 @@ public class ProductController {
 	 */
 	@GetMapping(value="/getProductList", produces="application/json; charset=UTF-8")
 	public List<Board> getProductList(){
+		log.info("실행");
 		List<Board> boardList = productService.getList();
-		log.info("보드리스트 개수 at controller : "+ boardList.size());
 		return boardList;
 	}
 	
@@ -99,11 +94,10 @@ public class ProductController {
 	 */
 	@GetMapping(value="/fileDownload", produces="image/jpeg")
 	public byte[] fileDownload(int productNo, String mediaName){
-		log.info("상품번호 : "+productNo);
-		log.info("미디어 이름 : "+mediaName);
 		Media media = productService.getProductOnlyAttachData(productNo, mediaName);
 		return media.getMediaData();
 	}
+	
 	
 	
 	/**

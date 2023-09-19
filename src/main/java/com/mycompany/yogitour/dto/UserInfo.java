@@ -14,6 +14,7 @@ public class UserInfo {
 	private String userPhone;
 	private String userGender;
 	private String userEnName;
-	private byte[] userProfileImage;
 	private String userEmail;
+	
+	/*private byte[] userProfileImage;*/
 }

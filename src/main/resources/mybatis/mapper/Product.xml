@@ -46,7 +46,8 @@
 		    p.PRODUCT_VISIT_PLACE as productVisitPlace,
 		    p.PRODUCT_RESERVATION_NUMBER as productReservationNumber,
 		    p.PRODUCT_CONTENT as productContent,
-		    p.PRODUCT_CATEGORY as productCategory
+		    p.PRODUCT_CATEGORY as productCategory,
+		    p.PRODUCT_VIDEO_URL as productVideoUrl
 		FROM PRODUCT p
 		ORDER BY p.PRODUCT_NO ASC
 	</select>

@@ -75,4 +75,11 @@ public class UserInfoController {
 		return jsonObject.toString();
 	}
 	
+	
+	@GetMapping(value="/getUserInfo", produces="application/json; charset=UTF-8")
+	public UserInfo getUserInfo(UserInfo userInfo) {
+		
+		return null;
+	}
+	
 }
