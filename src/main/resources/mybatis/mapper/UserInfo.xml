@@ -26,5 +26,11 @@
 		FROM USERINFO
 		WHERE USER_ID=#{userId}
 	</select>
+	
+	<select id="selectBattachData" parameterType="int" resultType="Media">
+		SELECT USER_PROFILE_IMAGE as mediaData
+		FROM USERINFO		
+		WHERE USER_NO = #{userNo}
+	</select>
 
 </mapper>

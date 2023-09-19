@@ -6,6 +6,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.yogitour.dao.UserInfoDao;
+import com.mycompany.yogitour.dto.ImageQuery;
+import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.UserInfo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +45,18 @@ public class UserInfoServiceImpl implements UserInfoService {
 			return LoginResult.FAIL_USER_PASSWORD;
 		}*/
 	}
+	
+	/**
+	 * 유저 프로필 이미지 데이터 요청
+	 * @author 고재승
+	 * @param userNo (유저 고유번호)
+	 * @return 바이너리 이진 데이터
+	 */
+	public byte[] getUserProfileImageData(int userNo) {
+		Media media = userInfoDao.selectBattachData(userNo);
+		return media.getMediaData();
+	}
+	
 	
 	@Override
 	public JoinResult join(UserInfo userInfo) {

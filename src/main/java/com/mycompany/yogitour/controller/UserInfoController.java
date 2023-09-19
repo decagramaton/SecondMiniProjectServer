@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.UserInfo;
 import com.mycompany.yogitour.service.UserInfoService;
 import com.mycompany.yogitour.service.UserInfoService.JoinResult;
@@ -53,10 +54,24 @@ public class UserInfoController {
 		return jsonObject.toString();
 	}
 	
-	
+	/**
+	 * @author 고재승
+	 * @param userId (유저 ID)
+	 * @return UserInfo DTO
+	 */
 	@GetMapping(value="/getUserInfo", produces="application/json; charset=UTF-8")
 	public UserInfo getUserInfo(String userId) {
 		return userInfoService.getUserInfo(userId);
+	}
+	
+	/**
+	 * @author 고재승
+	 * @param userNo (유저 고유번호)
+	 * @return 바이너리 데이터
+	 */
+	@GetMapping(value="/fileDownload", produces="image/jpeg")
+	public byte[] fileDownload(int userNo, String mediaName){
+		return userInfoService.getUserProfileImageData(userNo);
 	}
 	
 	

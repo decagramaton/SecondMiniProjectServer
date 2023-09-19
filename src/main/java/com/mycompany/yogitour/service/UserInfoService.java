@@ -1,5 +1,6 @@
 package com.mycompany.yogitour.service;
 
+import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.UserInfo;
 
 public interface UserInfoService {
@@ -28,6 +29,14 @@ public interface UserInfoService {
 	 * @return 로그인 ENUM 값
 	 */
 	public LoginResult login(String userId, String userPassword);
+	
+	/**
+	 * 유저 프로필 이미지 데이터 요청
+	 * @author 고재승
+	 * @param userNo (유저 고유번호)
+	 * @return 바이너리 이진 데이터
+	 */
+	public byte[] getUserProfileImageData(int userNo);
 	
 	
 	/** 회원가입 유효성 검증 메소드
