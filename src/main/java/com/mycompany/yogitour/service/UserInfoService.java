@@ -38,6 +38,13 @@ public interface UserInfoService {
 	 */
 	public byte[] getUserProfileImageData(int userNo);
 	
+	/**
+	 * 유저 프로필 이미지 데이터 DB에 저장 요청
+	 * @author 고재승
+	 * @param media
+	 */
+	public void setUserProfileImageData(Media media);
+	
 	
 	/** 회원가입 유효성 검증 메소드
 	 * @author 고재승

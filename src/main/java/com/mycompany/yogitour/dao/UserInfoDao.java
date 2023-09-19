@@ -19,4 +19,12 @@ public interface UserInfoDao {
 	 * @return BLOB - byte[]
 	 */
 	public Media selectBattachData(int userNo);
+	
+	
+	/**
+	 * USERINFO 테이블에 유저 프로필 사진 이미지 데이터 갱신 요청
+	 * @author 고재승
+	 * @param Media (미디어 데이터 DTO)
+	 */
+	public void updateUserProfileImageData(Media media);
 }

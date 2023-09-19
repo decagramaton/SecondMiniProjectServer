@@ -1,5 +1,7 @@
 package com.mycompany.yogitour.controller;
 
+import java.io.IOException;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.UserInfo;
@@ -72,6 +75,27 @@ public class UserInfoController {
 	@GetMapping(value="/fileDownload", produces="image/jpeg")
 	public byte[] fileDownload(int userNo, String mediaName){
 		return userInfoService.getUserProfileImageData(userNo);
+	}
+	
+	
+	/**
+	 * 유저 프로필 사진 DB 저장 요청
+	 * @param media
+	 * @return
+	 */
+	@PostMapping(value="/setUserProfileImage", produces="image/jpeg")
+	public void setUserProfileImage(Media media) {
+		try {
+			MultipartFile mf = media.getBattach();
+			
+			if(!mf.isEmpty()) {
+				media.setMediaData(mf.getBytes());
+			}
+			
+			userInfoService.setUserProfileImageData(media);
+		} catch (Exception e) {
+			log.info(e.toString());
+		}
 	}
 	
 	
