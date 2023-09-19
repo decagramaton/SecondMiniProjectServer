@@ -31,11 +31,16 @@ public class WishController {
 	@Autowired
 	private WishService wishService;	
 	
-
+	//찜 여부 확인
 	@GetMapping(value="/checkWishByUserNoAndProductNo", produces="application/json; charset=UTF-8")
 	public int checkWishByUserNoAndProductNo(int productNo, int userNo){
 		int result = wishService.checkWish(productNo, userNo);
 		return result;
 	}
-	
+	//찜 버튼 클릭 시 찜 활성화/비활성화
+	@GetMapping(value="/clickWishBtn", produces="application/json; charset=UTF-8")
+	public void clickWishBtn(int productNo, int userNo){
+		log.info("상품번호, 유저번호  " + productNo +  " : " +userNo);
+		wishService.clickWishBtn(productNo, userNo);
+	}
 }

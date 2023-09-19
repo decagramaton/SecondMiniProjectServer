@@ -9,4 +9,5 @@ import com.mycompany.yogitour.dto.Pager;
 
 public interface WishService {
 	public int checkWish(int productNo, int userNo);
+	public void clickWishBtn(int productNo, int userNo);
 }

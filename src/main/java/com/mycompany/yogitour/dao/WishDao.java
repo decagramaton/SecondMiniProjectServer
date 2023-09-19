@@ -5,9 +5,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.yogitour.dto.Review;
+import com.mycompany.yogitour.dto.Wish;
 
 @Mapper
 public interface WishDao {
-	public int checkWish(int productNo, int userNo);
+	public int checkWish(Wish wish);
+	public void addWish(Wish wish);
+	public void deleteWish(Wish wish);
 	
 }
