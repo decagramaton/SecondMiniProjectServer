@@ -7,7 +7,7 @@
 	</insert>
 	
 	<select id="selectLoginUser" parameterType="UserInfo" resultType="int">
-		SELECT USER_NO as userNo,
+		SELECT USER_NO
 		FROM USERINFO
 		WHERE USER_ID = #{userId}
 			AND USER_PASSWORD = #{userPassword}
