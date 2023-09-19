@@ -14,5 +14,18 @@
 		FROM REVIEW
 		WHERE PRODUCT_NO = #{productNo}
 	</select>
+	
+	<select id="selectReviewListByUserNo" parameterType="int" resultType="Review">
+		SELECT REVIEW_NO as reviewNo,
+			PRODUCT_NO as productNo,
+			RESERVATION_NO as reservationNo,
+			USER_NO as userNo,
+			REVIEW_TITLE as reviewTitle,
+			REVIEW_CONTENT as reviewContent,
+			REVIEW_DATE as reviewDate,
+			REVIEW_RATING as reviewRating
+		FROM REVIEW
+		WHERE USER_NO = #{userNo}
+	</select>
 
 </mapper>
