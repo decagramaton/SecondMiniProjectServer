@@ -12,8 +12,8 @@ public interface ProductService {
 	public void remove(int bno);
 	public List<Board> getList();
 	public List<Board> getProductListBySearchKeyword(String searchKeyword);
-	public Product getProduct(int productNo);
-	public Media getProductOnlyAttachData(int productNo, String keyword);	
+	public Board getProduct(int productNo);
+	public Media getProductOnlyAttachData(int productNo, String mediaName);	
 	public List<Board> getListByCategory(String category);
 	public Product getProductDetail(int productNo);
 }

@@ -17,10 +17,12 @@ public class Board {
 	private Date tourEndDate;
 	private String productVehicle;
 	private String productVisitPlace;
+	private String productVideoUrl;
 	private int productReservationNumber;
 	private String productContent;
 	private String productCategory;
 	
 	List<Review> reviewList;
+	private float averageRating;
 
 }

@@ -63,10 +63,11 @@
 			p.PRODUCT_RESERVATION_NUMBER as productReservationNumber,
 			p.PRODUCT_CONTENT as productContent,
 			p.PRODUCT_CATEGORY as productCategory,
+			p.PRODUCT_VIDEO_URL as productVideoUrl,
 			m.MEDIA_DATA as productMediaData,
 			m.MEDIA_TYPE as productMediaType
 		FROM PRODUCT p, MEDIA m
-		WHERE p.PRODUCT_NO = m.PRODUCT_NO,
+		WHERE p.PRODUCT_NO = m.PRODUCT_NO and m.MEDIA_NAME = 'name_main' and
 			p.PRODUCT_NO = #{productNo}
 	</select>
 	

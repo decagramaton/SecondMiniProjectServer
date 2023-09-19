@@ -37,10 +37,16 @@ public class ProductController {
 	 */
 	@GetMapping(value="/getProductList", produces="application/json; charset=UTF-8")
 	public List<Board> getProductList(){
-		return productService.getList();
+		List<Board> boardList = productService.getList();
+		log.info("보드리스트 개수 at controller : "+ boardList.size());
+		return boardList;
 	}
 	
-	//testest
+	@GetMapping(value="/getProductByProductNo", produces="application/json; charset=UTF-8")
+	public Board getProductByProductNo(int productNo) {
+		return productService.getProduct(productNo);
+	}
+	
 	
 	/**
 	 * 카테고리 조건으로 전체 상품을 조회하는 메소드
@@ -69,10 +75,10 @@ public class ProductController {
 	 * @param bno
 	 * @return
 	 */
-	@GetMapping(value="/getProduct", produces="application/json; charset=UTF-8")
+	/*@GetMapping(value="/getProduct", produces="application/json; charset=UTF-8")
 	public Product getBoard(int productNo){
 		return productService.getProduct(productNo);
-	}
+	}*/
 	
 	/**
 	 * 게시글의 초기 정보를 조회하는 메소드
@@ -92,10 +98,13 @@ public class ProductController {
 	 * @return Image Byte[]
 	 */
 	@GetMapping(value="/fileDownload", produces="image/jpeg")
-	public byte[] fileDownload(int productNo, String keyword){
-		Media media = productService.getProductOnlyAttachData(productNo, keyword);
+	public byte[] fileDownload(int productNo, String mediaName){
+		log.info("상품번호 : "+productNo);
+		log.info("미디어 이름 : "+mediaName);
+		Media media = productService.getProductOnlyAttachData(productNo, mediaName);
 		return media.getMediaData();
 	}
+	
 	
 	/**
 	 * 상품 게시글 작성 메소드
