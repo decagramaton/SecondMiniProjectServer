@@ -38,6 +38,8 @@ public class UserInfoController {
 		LoginResult loginResult = userInfoService.login(userId, userPassword);
 		JSONObject jsonObject = new JSONObject();
 		
+		// git test
+		
 		// Step2. 로그인 성공 시, 유저 정보 반환
 		if(loginResult == LoginResult.SUCCESS) {
 			jsonObject.put("result", "success");	
