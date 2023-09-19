@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.yogitour.dao.ReservationDao">
+	
+	<insert id="addReservation" parameterType="Reservation">
+		<selectKey keyProperty="reservationNo" order="BEFORE" resultType="int">
+			select RESERVATION_NO_SEQ.NEXTVAL from dual
+		</selectKey>
+		INSERT INTO RESERVATION 
+			(RESERVATION_NO, USER_NO, PRODUCT_NO, RESERVATION_ADULT_NUMBER,
+			 RESERVATION_CHILD_NUMBER, RESERVATION_DATE,RESERVATION_STATE )
+		VALUES(#{reservationNo}, #{userNo}, #{productNo}, #{reservationAdultNumber}, #{reservationChildNumber}, SYSDATE, 1 )
+	</insert>
+
+
+</mapper>
