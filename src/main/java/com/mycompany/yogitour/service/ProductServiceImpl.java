@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.yogitour.dao.ProductDao;
 import com.mycompany.yogitour.dao.ReviewDao;
+import com.mycompany.yogitour.dao.WishDao;
 import com.mycompany.yogitour.dto.Board;
 import com.mycompany.yogitour.dto.ImageQuery;
 import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.Product;
 import com.mycompany.yogitour.dto.Review;
+import com.mycompany.yogitour.dto.Wish;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +26,8 @@ public class ProductServiceImpl implements ProductService{
 	private ProductDao productDao;
 	@Autowired
 	private ReviewDao reviewDao;
+	@Autowired
+	private WishDao wishDao;
 	
 	@Override
 	public void write(Product product) {
@@ -59,6 +63,9 @@ public class ProductServiceImpl implements ProductService{
 				review.setReviewRating(0);
 				reviewList.add(review);
 			}
+			
+			List<Integer> wishList = wishDao.selectWishListByProductNo(item.getProductNo());
+			
 			board.setProductNo(item.getProductNo());
 			board.setProductTitle(item.getProductTitle());
 			board.setProductAdultPrice(item.getProductAdultPrice());
@@ -70,7 +77,9 @@ public class ProductServiceImpl implements ProductService{
 			board.setProductVisitPlace(item.getProductVisitPlace());
 			board.setTourStartDate(item.getTourStartDate());
 			board.setTourEndDate(item.getTourEndDate());
+			
 			board.setReviewList(reviewList);
+			board.setWishUserNo(wishList);
 			
 			boardList.add(board);
 			

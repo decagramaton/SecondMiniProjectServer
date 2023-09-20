@@ -16,6 +16,12 @@
 			AND w.USER_NO = #{userNo}
 	</select>
 	
+	<select id="selectWishListByProductNo" parameterType="int" resultType="int">
+		SELECT USER_NO as userNo
+		FROM WISHLIST
+		WHERE PRODUCT_NO = #{productNo}
+	</select>
+	
 	<insert id="addWish" parameterType="Wish">
 		INSERT INTO WISHLIST (PRODUCT_NO, USER_NO) VALUES(#{productNo}, #{userNo})
 	</insert>

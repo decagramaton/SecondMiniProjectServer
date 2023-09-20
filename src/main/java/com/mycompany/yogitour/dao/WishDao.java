@@ -14,5 +14,5 @@ public interface WishDao {
 	public void addWish(Wish wish);
 	public void deleteWish(Wish wish);
 	public List<Product> selectWishListByUserNo(int userNo);
-	
+	public List<Integer> selectWishListByProductNo(int productNo);
 }
