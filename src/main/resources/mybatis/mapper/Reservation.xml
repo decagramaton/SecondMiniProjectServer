@@ -11,6 +11,20 @@
 			 RESERVATION_CHILD_NUMBER, RESERVATION_DATE,RESERVATION_STATE )
 		VALUES(#{reservationNo}, #{userNo}, #{productNo}, #{reservationAdultNumber}, #{reservationChildNumber}, SYSDATE, 1 )
 	</insert>
+	
+	<select id="getReservationDay" parameterType="int" resultType="Date">
+		  SELECT DISTINCT TRUNC(RESERVATION_DATE) AS reservationDate
+			FROM reservation
+			WHERE user_no = #{userNo}
+			ORDER BY reservationDate DESC
+	</select>
+	
+	<select id="getReservationByDay" parameterType="Reservation" resultType="Reservation">
+		select RESERVATION_NO as reservationNo, USER_NO as userNo, PRODUCT_NO as productNo, RESERVATION_ADULT_NUMBER as reservationAdultNumber,
+			 RESERVATION_CHILD_NUMBER as reservationChildNumber, RESERVATION_DATE as reservationDate ,RESERVATION_STATE as reservationState
+		from reservation where user_no =#{userNo} and TRUNC(RESERVATION_DATE) = #{reservationDate}  order by reservation_no desc
+
+	</select>
 
 
 </mapper>

@@ -2,6 +2,7 @@ package com.mycompany.yogitour.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -42,5 +43,19 @@ public class ReservationController {
 		reservation.setReservationAdultNumber(adultNumber);
 		reservation.setReservationChildNumber(childNumber);
 		reservationService.setNewReservation(reservation);
+	}
+	
+	@GetMapping(value="/getReservationDayList",produces="application/json; charset=UTF-8")
+	public List<Date> getReservationDayList(int userNo){
+		List<Date> reservationDayList = reservationService.getReservationDay(userNo);
+		return reservationDayList;
+	}
+	
+	@GetMapping(value="/getReservationListByDay",produces="application/json; charset=UTF-8")
+	public List<Reservation> getReservationListByDay(Date reservationDate , int userNo){
+		List<Reservation> reservationList = reservationService.getReservationByDay(reservationDate , userNo);
+		log.info("날짜 : "+reservationDate );
+		log.info("날짜별 예약 내역 : "+reservationList );
+		return reservationList;
 	}
 }
