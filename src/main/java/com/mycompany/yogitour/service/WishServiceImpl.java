@@ -1,5 +1,7 @@
 package com.mycompany.yogitour.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.yogitour.dao.UserInfoDao;
 import com.mycompany.yogitour.dao.WishDao;
+import com.mycompany.yogitour.dto.Product;
 import com.mycompany.yogitour.dto.UserInfo;
 import com.mycompany.yogitour.dto.Wish;
 
@@ -41,6 +44,11 @@ public class WishServiceImpl implements WishService {
 			wishDao.deleteWish(wish);
 		}
 		
+	}
+
+	@Override
+	public List<Product> getWish(int userNo) {
+		return wishDao.selectWishListByUserNo(userNo);
 	}
 	
 	

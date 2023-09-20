@@ -57,6 +57,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return media.getMediaData();
 	}
 	
+	/**
+	 * 유저 프로필 이미지 데이터 DB에 저장 요청
+	 * @author 고재승
+	 * @param media
+	 */
+	public void setUserProfileImageData(Media media) {
+		userInfoDao.updateUserProfileImageData(media);
+	}
+	
 	
 	@Override
 	public JoinResult join(UserInfo userInfo) {

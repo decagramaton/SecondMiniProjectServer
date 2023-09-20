@@ -1,29 +1,15 @@
 package com.mycompany.yogitour.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.mycompany.yogitour.dto.Board;
-import com.mycompany.yogitour.dto.Media;
-import com.mycompany.yogitour.dto.Product;
 import com.mycompany.yogitour.dto.Reservation;
-import com.mycompany.yogitour.dto.Review;
-import com.mycompany.yogitour.interceptor.Login;
-import com.mycompany.yogitour.service.ProductService;
 import com.mycompany.yogitour.service.ReservationService;
-import com.mycompany.yogitour.service.ReviewService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,13 +35,13 @@ public class ReservationController {
 	public List<Date> getReservationDayList(int userNo){
 		List<Date> reservationDayList = reservationService.getReservationDay(userNo);
 		return reservationDayList;
-	}
-	
+	}	
 	@GetMapping(value="/getReservationListByDay",produces="application/json; charset=UTF-8")
 	public List<Reservation> getReservationListByDay(Date reservationDate , int userNo){
 		List<Reservation> reservationList = reservationService.getReservationByDay(reservationDate , userNo);
 		log.info("날짜 : "+reservationDate );
 		log.info("날짜별 예약 내역 : "+reservationList );
 		return reservationList;
+
 	}
 }

@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.yogitour.dao.ProductDao;
 import com.mycompany.yogitour.dao.ReviewDao;
+import com.mycompany.yogitour.dao.WishDao;
 import com.mycompany.yogitour.dto.Board;
 import com.mycompany.yogitour.dto.ImageQuery;
 import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.Product;
 import com.mycompany.yogitour.dto.Review;
+import com.mycompany.yogitour.dto.Wish;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +26,8 @@ public class ProductServiceImpl implements ProductService{
 	private ProductDao productDao;
 	@Autowired
 	private ReviewDao reviewDao;
+	@Autowired
+	private WishDao wishDao;
 	
 	@Override
 	public void write(Product product) {
@@ -45,7 +49,8 @@ public class ProductServiceImpl implements ProductService{
 	public List<Board> getList() {
 		List<Board> boardList = new ArrayList<>();
 		// Step1. Product 정보와 Review 정보를 가져온다.
-		List<Product> productList = productDao.selectAll();
+		//List<Product> productList = productDao.selectAll();
+		List<Product> productList = productDao.selectRandomTen();
 		
 		// Step2. Product, Review정보를 Board DTO에 하나로 취합한다.
 		// 각 Product마다 리뷰 평균 점수와  리뷰 총 개수를 구하고 Board DTO에 취합해야한다.
@@ -59,6 +64,11 @@ public class ProductServiceImpl implements ProductService{
 				review.setReviewRating(0);
 				reviewList.add(review);
 			}
+			
+			// git test용 주석
+			
+			List<Integer> wishList = wishDao.selectWishListByProductNo(item.getProductNo());
+			
 			board.setProductNo(item.getProductNo());
 			board.setProductTitle(item.getProductTitle());
 			board.setProductAdultPrice(item.getProductAdultPrice());
@@ -70,7 +80,9 @@ public class ProductServiceImpl implements ProductService{
 			board.setProductVisitPlace(item.getProductVisitPlace());
 			board.setTourStartDate(item.getTourStartDate());
 			board.setTourEndDate(item.getTourEndDate());
+			
 			board.setReviewList(reviewList);
+			board.setWishUserNo(wishList);
 			
 			boardList.add(board);
 			

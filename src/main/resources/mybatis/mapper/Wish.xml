@@ -7,6 +7,21 @@
 		WHERE PRODUCT_NO = #{productNo} AND USER_NO =#{userNo}
 	</select>
 	
+	<select id="selectWishListByUserNo" parameterType="int" resultType="Product">
+		SELECT p.PRODUCT_NO as productNo,
+			p.PRODUCT_TITLE as productTitle,
+			p.PRODUCT_ADULT_PRICE as productAdultPrice
+		FROM WISHLIST w, PRODUCT p
+		WHERE w.PRODUCT_NO = p.PRODUCT_NO
+			AND w.USER_NO = #{userNo}
+	</select>
+	
+	<select id="selectWishListByProductNo" parameterType="int" resultType="int">
+		SELECT USER_NO as userNo
+		FROM WISHLIST
+		WHERE PRODUCT_NO = #{productNo}
+	</select>
+	
 	<insert id="addWish" parameterType="Wish">
 		INSERT INTO WISHLIST (PRODUCT_NO, USER_NO) VALUES(#{productNo}, #{userNo})
 	</insert>

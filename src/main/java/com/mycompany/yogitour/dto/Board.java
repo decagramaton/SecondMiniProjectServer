@@ -22,5 +22,6 @@ public class Board {
 	private String productCategory;
 	private String productVideoUrl;
 	
-	List<Review> reviewList;
+	List<Review> reviewList;		// 상품의 리뷰 목록
+	List<Integer> wishUserNo;		// 상품을 찜한 유저 번호 목록
 }

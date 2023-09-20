@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.yogitour.dao.ReservationDao;
 import com.mycompany.yogitour.dto.Reservation;
+import com.mycompany.yogitour.dto.ReservationDetail;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +21,6 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Override
 	public void setNewReservation(Reservation reservation) {
-		log.info("서비스 임플의 정보 : "+ reservation);
 		reservationDao.addReservation(reservation);
 		
 	}
@@ -39,8 +39,5 @@ public class ReservationServiceImpl implements ReservationService {
 		List<Reservation> reservationList =  reservationDao.getReservationByDay(reservation);
 		return reservationList;
 	}
-	
-	
-	
 	
 }
