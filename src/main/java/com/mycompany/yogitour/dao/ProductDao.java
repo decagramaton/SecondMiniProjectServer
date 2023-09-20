@@ -13,6 +13,7 @@ public interface ProductDao {
 	public int insertProduct(Product product);
 	public int insertMedia(Media media);
 	public List<Product> selectAll();
+	public List<Product> selectRandomTen();
 	public List<Product> selectBySearchKeyword(String searchKeyword);
 	public Product selectByProductNo(int ProductNo);
 	public Media selectBattachData(ImageQuery imageQuery);

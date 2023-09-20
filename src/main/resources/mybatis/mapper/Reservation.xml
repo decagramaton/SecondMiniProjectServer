@@ -11,6 +11,23 @@
 			 RESERVATION_CHILD_NUMBER, RESERVATION_DATE,RESERVATION_STATE )
 		VALUES(#{reservationNo}, #{userNo}, #{productNo}, #{reservationAdultNumber}, #{reservationChildNumber}, SYSDATE, 1 )
 	</insert>
-
+	
+	
+	<select id="selectReservationDetailByUserNo" parameterType="int" resultType="ReservationDetail">
+		SELECT r.RESERVATION_NO as reservationNo,
+			r.RESERVATION_ADULT_NUMBER as reservationAdultNumber,
+			r.RESERVATION_CHILD_NUMBER as reservationChildNumber,
+			r.RESERVATION_DATE as reservationDate,
+			r.RESERVATION_STATE as reservationState,
+			p.PRODUCT_NO as productNo,
+			p.PRODUCT_TITLE as productTitle,
+			p.PRODUCT_ADULT_PRICE as productAdultPrice,
+			p.PRODUCT_CHILD_PRICE as productchildPrice,
+			p.TOUR_START_DATE as tourStartDate,
+			p.TOUR_END_DATE as tourEndDate
+		FROM PRODUCT p, RESERVATION r
+		WHERE p.PRODUCT_NO = r.PRODUCT_NO
+			AND r.USER_NO = #{userNo}
+	</select>
 
 </mapper>

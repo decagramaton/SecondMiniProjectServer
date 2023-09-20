@@ -49,7 +49,8 @@ public class ProductServiceImpl implements ProductService{
 	public List<Board> getList() {
 		List<Board> boardList = new ArrayList<>();
 		// Step1. Product 정보와 Review 정보를 가져온다.
-		List<Product> productList = productDao.selectAll();
+		//List<Product> productList = productDao.selectAll();
+		List<Product> productList = productDao.selectRandomTen();
 		
 		// Step2. Product, Review정보를 Board DTO에 하나로 취합한다.
 		// 각 Product마다 리뷰 평균 점수와  리뷰 총 개수를 구하고 Board DTO에 취합해야한다.

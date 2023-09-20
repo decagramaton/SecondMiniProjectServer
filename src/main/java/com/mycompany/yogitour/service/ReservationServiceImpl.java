@@ -1,10 +1,13 @@
 package com.mycompany.yogitour.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.yogitour.dao.ReservationDao;
 import com.mycompany.yogitour.dto.Reservation;
+import com.mycompany.yogitour.dto.ReservationDetail;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,12 +19,15 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Override
 	public void setNewReservation(Reservation reservation) {
-		log.info("서비스 임플의 정보 : "+ reservation);
 		reservationDao.addReservation(reservation);
 		
 	}
 	
 	
+	@Override
+	public List<ReservationDetail> getReservationDetailList(int userNo) {
+		return reservationDao.selectReservationDetailByUserNo(userNo);
+	}
 	
 	
 }
