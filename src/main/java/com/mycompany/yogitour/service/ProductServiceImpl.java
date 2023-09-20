@@ -65,6 +65,8 @@ public class ProductServiceImpl implements ProductService{
 				reviewList.add(review);
 			}
 			
+			// git test용 주석
+			
 			List<Integer> wishList = wishDao.selectWishListByProductNo(item.getProductNo());
 			
 			board.setProductNo(item.getProductNo());
