@@ -52,6 +52,29 @@
 		ORDER BY p.PRODUCT_NO ASC
 	</select>
 	
+	<select id="selectRandomTen" resultType="Product">
+		<![CDATA[
+		SELECT 
+		    PRODUCT_NO as productNo,
+		    PRODUCT_TITLE as productTitle,
+		    PRODUCT_ADULT_PRICE as productAdultPrice,
+		    PRODUCT_CHILD_PRICE as productChildPrice,
+		    TOUR_START_DATE as tourStartDate,
+		    TOUR_END_DATE as tourEndDate,
+		    PRODUCT_VEHICLE as productVehicle,
+		    PRODUCT_VISIT_PLACE as productVisitPlace,
+		    PRODUCT_RESERVATION_NUMBER as productReservationNumber,
+		    PRODUCT_CONTENT as productContent,
+		    PRODUCT_CATEGORY as productCategory,
+		    PRODUCT_VIDEO_URL as productVideoUrl
+		FROM (	SELECT *
+				FROM PRODUCT
+				ORDER BY DBMS_RANDOM.RANDOM
+			 )
+		WHERE ROWNUM < 10
+		]]>
+	</select>
+	
 	<select id="selectByProductNo" parameterType="int" resultType="Product">
 		SELECT p.PRODUCT_NO as productNo,
 			p.PRODUCT_TITLE as productTitle,

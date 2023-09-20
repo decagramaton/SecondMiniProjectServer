@@ -33,7 +33,6 @@
 		WHERE USER_NO = #{userNo}
 	</select>
 	
-	
 	<update id="updateUserProfileImageData" parameterType="Media">
 		UPDATE USERINFO
 		SET USER_PROFILE_IMAGE = #{mediaData, jdbcType=BLOB}
