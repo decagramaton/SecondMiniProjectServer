@@ -38,4 +38,9 @@ public class WishController {
 	public List<Product> getWishListByUserNo(int userNo) {
 		return wishService.getWish(userNo);
 	}
+	
+	@GetMapping(value="/deleteWish", produces="application/json; charset=UTF-8")
+	public void deleteWish(int productNo, int userNo) {
+		wishService.deleteWish(productNo, userNo);
+	}
 }

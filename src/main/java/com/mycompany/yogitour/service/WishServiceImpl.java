@@ -50,6 +50,15 @@ public class WishServiceImpl implements WishService {
 	public List<Product> getWish(int userNo) {
 		return wishDao.selectWishListByUserNo(userNo);
 	}
+
+	@Override
+	public void deleteWish(int productNo, int userNo) {
+		Wish wish = new Wish();
+		wish.setProductNo(productNo);
+		wish.setUserNo(userNo);
+		wishDao.deleteWish(wish);
+		
+	}
 	
 	
 	

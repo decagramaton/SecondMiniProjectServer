@@ -12,4 +12,5 @@ public interface WishService {
 	public int checkWish(int productNo, int userNo);
 	public void clickWishBtn(int productNo, int userNo);
 	public List<Product> getWish(int userNo);
+	public void deleteWish(int productNo, int userNo);
 }
