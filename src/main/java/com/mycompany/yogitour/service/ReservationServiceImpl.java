@@ -39,5 +39,11 @@ public class ReservationServiceImpl implements ReservationService {
 		List<Reservation> reservationList =  reservationDao.getReservationByDay(reservation);
 		return reservationList;
 	}
+
+	@Override
+	public void reservationCancel(Reservation reservation) {
+		reservationDao.reservationCancel(reservation);
+		
+	}
 	
 }

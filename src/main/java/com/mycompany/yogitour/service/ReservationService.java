@@ -9,5 +9,6 @@ public interface ReservationService {
 	public void setNewReservation(Reservation reservation);
 	public List<Date> getReservationDay(int userNo);
 	public List<Reservation> getReservationByDay(Date day, int userNo);
+	public void reservationCancel(Reservation reservation);
 
 }

@@ -36,6 +36,7 @@ public class ReservationController {
 		List<Date> reservationDayList = reservationService.getReservationDay(userNo);
 		return reservationDayList;
 	}	
+	
 	@GetMapping(value="/getReservationListByDay",produces="application/json; charset=UTF-8")
 	public List<Reservation> getReservationListByDay(Date reservationDate , int userNo){
 		List<Reservation> reservationList = reservationService.getReservationByDay(reservationDate , userNo);
@@ -43,5 +44,13 @@ public class ReservationController {
 		log.info("날짜별 예약 내역 : "+reservationList );
 		return reservationList;
 
+	}
+	
+	@GetMapping(value="/reservationCancel",produces="application/json; charset=UTF-8")
+	public void reservationCancel(int reservationNo , int userNo) {
+		Reservation reservation = new Reservation();
+		reservation.setReservationNo(reservationNo);
+		reservation.setUserNo(userNo);
+		reservationService.reservationCancel(reservation);
 	}
 }
