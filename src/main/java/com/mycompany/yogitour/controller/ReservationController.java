@@ -18,6 +18,7 @@ import com.mycompany.yogitour.dto.Board;
 import com.mycompany.yogitour.dto.Media;
 import com.mycompany.yogitour.dto.Product;
 import com.mycompany.yogitour.dto.Reservation;
+import com.mycompany.yogitour.dto.ReservationDetail;
 import com.mycompany.yogitour.dto.Review;
 import com.mycompany.yogitour.interceptor.Login;
 import com.mycompany.yogitour.service.ProductService;
@@ -42,5 +43,10 @@ public class ReservationController {
 		reservation.setReservationAdultNumber(adultNumber);
 		reservation.setReservationChildNumber(childNumber);
 		reservationService.setNewReservation(reservation);
+	}
+	
+	@GetMapping(value="/getReservationDetailList", produces="application/json; charset=UTF-8")
+	public List<ReservationDetail> getReservationDetailList(int userNo) {
+		return reservationService.getReservationDetailList(userNo);	
 	}
 }
