@@ -27,5 +27,18 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewList;
 		
 	}
+
+	@Override
+	public void addReview(Review review) {
+		reviewDao.insertReview(review);
+		
+	}
+
+	@Override
+	public Integer checkReview(int reservationNo) {
+		Integer result = reviewDao.checkReview(reservationNo);
+		return result;
+	}
+
 	
 }

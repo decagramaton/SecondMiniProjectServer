@@ -25,7 +25,20 @@
 			REVIEW_DATE as reviewDate,
 			REVIEW_RATING as reviewRating
 		FROM REVIEW
-		WHERE USER_NO = #{userNo}
+		WHERE USER_NO = #{userNo} order by REVIEW_NO desc
+	</select>
+	
+	<insert id="insertReview" parameterType="Review">
+		<selectKey keyProperty="reviewNo" order="BEFORE" resultType="int">
+			SELECT REVIEW_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+			INSERT INTO REVIEW (REVIEW_NO, PRODUCT_NO, RESERVATION_NO, USER_NO, 
+						REVIEW_TITLE, REVIEW_CONTENT, REVIEW_DATE, REVIEW_RATING)
+        	VALUES(#{reviewNo}, #{productNo},#{reservationNo},#{userNo},#{reviewTitle},#{reviewContent}, SYSDATE, #{reviewRating})
+	</insert>
+	
+	<select id="checkReview" parameterType="int" resultType="Integer">
+		select count(*) from review where reservation_no = #{reservationNo}
 	</select>
 
 </mapper>

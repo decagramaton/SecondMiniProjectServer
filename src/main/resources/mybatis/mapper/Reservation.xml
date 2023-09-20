@@ -29,5 +29,6 @@
 	<update id="reservationCancel" parameterType="Reservation">
 		UPDATE RESERVATION SET RESERVATION_STATE = 3 WHERE USER_NO = #{userNo} AND RESERVATION_NO = #{reservationNo}
 	</update>
+	
 
 </mapper>

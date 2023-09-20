@@ -53,4 +53,5 @@ public class ReservationController {
 		reservation.setUserNo(userNo);
 		reservationService.reservationCancel(reservation);
 	}
+	
 }
