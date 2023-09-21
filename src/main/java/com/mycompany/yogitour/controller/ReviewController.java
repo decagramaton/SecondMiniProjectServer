@@ -22,7 +22,8 @@ public class ReviewController {
 	
 	@GetMapping(value="/getReviewListByUserNo", produces="application/json; charset=UTF-8")
 	public List<Review> getReviewListByUserNo(int userNo){
-		return reviewService.getList(userNo);
+		List<Review> reviewList = reviewService.getList(userNo);
+		return reviewList;
 	}
 	
 	@GetMapping(value="/addReview",produces="application/json; charset=UTF-8")
@@ -41,6 +42,10 @@ public class ReviewController {
 	@GetMapping(value="/checkReview", produces="application/json; charset=UTF-8")
 	public Integer checkReview(int reservationNo) {
 		return reviewService.checkReview(reservationNo);
+	}
+	@GetMapping(value="/removeReview",produces="application/json; charset=UTF-8")
+	public void removeReview(int reviewNo) {
+		reviewService.removeReview(reviewNo);
 	}
 
 }

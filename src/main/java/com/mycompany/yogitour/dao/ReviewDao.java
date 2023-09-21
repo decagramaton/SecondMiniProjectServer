@@ -12,4 +12,5 @@ public interface ReviewDao {
 	public List<Review> selectReviewListByUserNo(int userNo);
 	public void insertReview(Review review);
 	public Integer checkReview(int reservationNo);
+	public void deleteReview(int reviewNo);
 }

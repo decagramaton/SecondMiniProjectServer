@@ -16,9 +16,6 @@ public class Review {
 	private String reviewContent;
 	private Date reviewDate;
 	private int reviewRating;
-	
-	@DateTimeFormat(pattern="yyyy.MM.dd")
 	private Date tourStartDate;
-	@DateTimeFormat(pattern="yyyy.MM.dd")
 	private Date tourEndDate;
 }
