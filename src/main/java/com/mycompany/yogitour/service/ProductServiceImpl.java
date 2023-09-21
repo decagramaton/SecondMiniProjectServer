@@ -128,6 +128,10 @@ public class ProductServiceImpl implements ProductService{
 			board.setTourStartDate(item.getTourStartDate());
 			board.setTourEndDate(item.getTourEndDate());
 			board.setReviewList(reviewList);
+			
+			List<Integer> wishList = wishDao.selectWishListByProductNo(item.getProductNo());
+			board.setWishUserNo(wishList);
+			
 			boardList.add(board);
 		}
 		
@@ -198,6 +202,10 @@ public class ProductServiceImpl implements ProductService{
 			board.setTourStartDate(item.getTourStartDate());
 			board.setTourEndDate(item.getTourEndDate());
 			board.setReviewList(reviewList);
+			
+			List<Integer> wishList = wishDao.selectWishListByProductNo(item.getProductNo());
+			board.setWishUserNo(wishList);
+			
 			boardList.add(board);
 		}
 		
