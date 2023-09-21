@@ -10,7 +10,7 @@ import com.mycompany.yogitour.dto.Pager;
 public interface ProductService {
 	public void write(Product product);
 	public void remove(int bno);
-	public List<Board> getList();
+	public List<Board> getList(String requestType);
 	public List<Board> getProductListBySearchKeyword(String searchKeyword);
 	public Board getProduct(int productNo);
 	public Media getProductOnlyAttachData(int productNo, String mediaName);	

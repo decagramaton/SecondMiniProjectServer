@@ -31,9 +31,9 @@ public class ProductController {
 	 * @return 상품 목록
 	 */
 	@GetMapping(value="/getProductList", produces="application/json; charset=UTF-8")
-	public List<Board> getProductList(){
+	public List<Board> getProductList(String requestType){
 		log.info("실행");
-		List<Board> boardList = productService.getList();
+		List<Board> boardList = productService.getList(requestType);
 		return boardList;
 	}
 	
