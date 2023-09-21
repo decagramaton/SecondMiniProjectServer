@@ -111,6 +111,7 @@
 			m.MEDIA_TYPE as productMediaType
 		FROM PRODUCT p, MEDIA m
 		WHERE p.PRODUCT_NO = m.PRODUCT_NO
+			AND m.MEDIA_NAME LIKE '%main%'
 			AND p.PRODUCT_TITLE LIKE '%' || #{searchKeyword} || '%'
 	</select>
 
