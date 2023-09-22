@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,9 +44,16 @@ public class ReviewController {
 	public Integer checkReview(int reservationNo) {
 		return reviewService.checkReview(reservationNo);
 	}
+	
 	@GetMapping(value="/removeReview",produces="application/json; charset=UTF-8")
 	public void removeReview(int reviewNo) {
 		reviewService.removeReview(reviewNo);
+	}
+	
+
+	@PostMapping(value="/updateReview",produces="application/json; charset=UTF-8")
+	public void updateReview(int reviewNo, int rating, String content) {
+		reviewService.updateReview(reviewNo, rating, content);
 	}
 
 }

@@ -13,4 +13,5 @@ public interface ReviewDao {
 	public void insertReview(Review review);
 	public Integer checkReview(int reservationNo);
 	public void deleteReview(int reviewNo);
+	public void updateReview(Review review);
 }

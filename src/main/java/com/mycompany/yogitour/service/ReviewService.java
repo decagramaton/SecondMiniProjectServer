@@ -9,5 +9,5 @@ public interface ReviewService {
 	public void addReview(Review review);
 	public Integer checkReview (int reservationNo);
 	public void removeReview(int reviewNo);
-
+	public void updateReview(int reviewNo, int rating, String content);
 }

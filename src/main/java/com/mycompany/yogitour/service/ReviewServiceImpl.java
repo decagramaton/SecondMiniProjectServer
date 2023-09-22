@@ -56,5 +56,15 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	}
 
+	@Override
+	public void updateReview(int reviewNo, int rating, String content) {
+		Review review = new Review();
+		review.setReviewNo(reviewNo);
+		review.setReviewRating(rating);
+		review.setReviewContent(content);
+		
+		reviewDao.updateReview(review);
+		
+	}
 	
 }
