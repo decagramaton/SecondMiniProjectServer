@@ -6,8 +6,8 @@
 		values(USER_NO_SEQ.nextval, #{userKoName}, #{userId}, #{userPassword}, #{userBirth}, #{userPhone}, #{userGender}, #{userEnName}, null, #{userEmail})
 	</insert>
 	
-	<select id="selectLoginUser" parameterType="UserInfo" resultType="int">
-		SELECT USER_NO
+	<select id="selectLoginUser" parameterType="UserInfo" resultType="UserInfo">
+		SELECT USER_NO as userNo
 		FROM USERINFO
 		WHERE USER_ID = #{userId}
 			AND USER_PASSWORD = #{userPassword}

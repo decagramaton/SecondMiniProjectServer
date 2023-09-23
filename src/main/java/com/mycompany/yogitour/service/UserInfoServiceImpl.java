@@ -28,11 +28,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public LoginResult login(String userId, String userPassword) {
 		
-		int dbUserNo = userInfoDao.selectLoginUser(new UserInfo(userId, userPassword));
-		
-		if(dbUserNo == 0) {
-			log.info("실행되면 안되는데?");
-			return UserInfoService.LoginResult.FAIL_USER_ID;
+		UserInfo userInfo = userInfoDao.selectLoginUser(new UserInfo(userId, userPassword));
+		log.info("dbUserNo : "+userInfo);
+		if(userInfo == null) {
+			return LoginResult.FAIL_USER_ID;
 		}
 		
 		return LoginResult.SUCCESS;
