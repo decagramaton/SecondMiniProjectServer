@@ -38,8 +38,12 @@ public class ReservationController {
 	}	
 	
 	@GetMapping(value="/getReservationListByDay",produces="application/json; charset=UTF-8")
-	public List<Reservation> getReservationListByDay(Date reservationDate , int userNo){
-		List<Reservation> reservationList = reservationService.getReservationByDay(reservationDate , userNo);
+	public List<Reservation> getReservationListByDay(long reservationDate , int userNo){
+		log.info("여긴 들어오나?");
+		log.info("들어오면 날짜는?"+reservationDate);
+		log.info("들어오면 유전번호는??" +userNo);
+		Date date=new Date(reservationDate);
+		List<Reservation> reservationList = reservationService.getReservationByDay(date , userNo);
 		log.info("날짜 : "+reservationDate );
 		log.info("날짜별 예약 내역 : "+reservationList );
 		return reservationList;
