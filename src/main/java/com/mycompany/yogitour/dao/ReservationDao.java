@@ -14,4 +14,5 @@ public interface ReservationDao {
 	public List<Date> getReservationDay(int userNo);
 	public List<Reservation> getReservationByDay(Reservation reservation);
 	public void reservationCancel(Reservation reservation);
+	public int getReservationNumberByProductNo(int productNo);
 }

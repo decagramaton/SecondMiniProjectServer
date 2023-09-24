@@ -30,5 +30,9 @@
 		UPDATE RESERVATION SET RESERVATION_STATE = 3 WHERE USER_NO = #{userNo} AND RESERVATION_NO = #{reservationNo}
 	</update>
 	
+	<select id="getReservationNumberByProductNo" parameterType="int" resultType="int">
+		select count(*) from reservation where product_NO = #{productNo}
+	</select>
+	
 
 </mapper>

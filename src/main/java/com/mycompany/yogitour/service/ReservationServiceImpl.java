@@ -45,5 +45,11 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationDao.reservationCancel(reservation);
 		
 	}
+
+	@Override
+	public int getThisProductReservationsNo(int productNo) {
+		int result = reservationDao.getReservationNumberByProductNo(productNo);
+		return result;
+	}
 	
 }

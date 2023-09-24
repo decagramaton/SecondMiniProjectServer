@@ -58,4 +58,10 @@ public class ReservationController {
 		reservationService.reservationCancel(reservation);
 	}
 	
+	@GetMapping(value="/getThisProductReservationsNo",produces="application/json; charset=UTF-8")
+	public Integer getThisProductReservationsNo(int productNo) {
+		int result = reservationService.getThisProductReservationsNo(productNo);
+		return result;
+	}
+	
 }

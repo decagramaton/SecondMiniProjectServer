@@ -10,5 +10,5 @@ public interface ReservationService {
 	public List<Date> getReservationDay(int userNo);
 	public List<Reservation> getReservationByDay(Date day, int userNo);
 	public void reservationCancel(Reservation reservation);
-
+	public int getThisProductReservationsNo(int productNo);
 }
